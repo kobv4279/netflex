@@ -35,8 +35,7 @@ class _MyAppState extends State<MyApp> {
         child: Scaffold(
           body: TabBarView(
             physics: NeverScrollableScrollPhysics(), //사용자가 직접 손가락모션을 통해서
-            children: <Widget> [
-              HomeScreen(),
+            children: <Widget>[
               Container(
                 child: Center(
                   child: Text('home'),
