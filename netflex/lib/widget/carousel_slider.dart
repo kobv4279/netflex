@@ -2,6 +2,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:netflex/model/model_movie.dart';
+import 'package:netflex/screen/detail_screen.dart';
 
 
 
@@ -46,13 +47,14 @@ class _CarouselImageState extends State<CarouselImage> {
           CarouselSlider(
             items: images,
             options: CarouselOptions(
-              autoPlay: true,
-              enlargeCenterPage: true,
-              viewportFraction: 0.9,
-              aspectRatio: 2.0,
-              initialPage: 2,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _currentPage = index;
+                  _currentKeyword = keywords[_currentPage];
+                });
+               },
+              ),
             ),
-          ),
           Container(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 3),
             child: Text(
@@ -97,7 +99,16 @@ class _CarouselImageState extends State<CarouselImage> {
                     children: <Widget>[
                       IconButton(
                         icon: Icon(Icons.info),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute<Null>(
+                            fullscreenDialog: true,
+                            builder: (BuildContext context) {
+                              return DetailScreen(
+                                movie: movies[_currentPage],
+                              );
+                            }
+                          ));
+                        },
                       ),
                       Text(
                         '정보',

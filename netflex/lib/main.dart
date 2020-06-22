@@ -36,11 +36,7 @@ class _MyAppState extends State<MyApp> {
           body: TabBarView(
             physics: NeverScrollableScrollPhysics(), //사용자가 직접 손가락모션을 통해서
             children: <Widget>[
-              Container(
-                child: Center(
-                  child: Text('home'),
-                ),
-              ),
+             HomeScreen(),
               Container(
                 child: Center(
                   child: Text('search'),
